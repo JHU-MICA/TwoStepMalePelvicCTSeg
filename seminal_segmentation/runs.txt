@@ -1,0 +1,72 @@
+Keeping track of models tested using ENHANCED IMAGES
+
+ENHANCED_PROSTATE: num_classes = 2
+val_size: 0.1
+
+--- unet (nnUNet_transform -> spatial_size=(64,64,64),pixdims=(1.7,1.7,1.7) ) ---
+GenericUnet(
+        1,
+        num_classes,
+        patch_size,
+        norm_name='INSTANCE',
+        num_layers=4,
+        encoder_block='conv',
+        encoder_units=2)
+
+dice_loss
+adamW: lr=1e-4,weight_decay=1e-5
+batch size: 2
+test_dice: 0.866 +- 0.053
+random_state = 10
+
+--- inception_unet (nnUNet_transform -> spatial_size=(64,64,64),pixdims=(1.7,1.7,1.7) ) ---
+GenericUnet(1,
+    num_classes,
+    patch_size,
+    norm_name='INSTANCE',
+    num_layers=5,
+    encoder_block='inception',
+    decoder_block='inception',
+    encoder_units=2,
+    decoder_units=2,)
+
+dice_loss
+adamW: lr=1e-4,weight_decay=1e-5
+batch size: 2
+test_dice: 
+random_state = 10
+
+--- res_unet (nnUNet_transform -> spatial_size=(64,64,64),pixdims=(1.7,1.7,1.7) ) ---
+
+GenericUnet(1,
+    num_classes,
+    patch_size,
+    norm_name='INSTANCE',
+    num_layers=5,
+    encoder_block='res',
+    decoder_block='res',
+    encoder_units=3,
+    decoder_units=3,)
+
+dice_loss
+adamW: lr=1e-4,weight_decay=1e-5
+batch size: 2
+test_dice: WORSE THAN ORIGINAL
+random_state = 0
+
+--- axial_unet (nnUNet_transform -> spatial_size=(64,64,64),pixdims=(1.7,1.7,1.7) ) ---
+
+GenericUnet(1,
+    num_classes,
+    patch_size,
+    norm_name='INSTANCE',
+    num_layers=4,
+    encoder_block='axial',
+    encoder_units=3,
+    )
+
+dice_loss
+adamW: lr=1e-4,weight_decay=1e-5
+batch size: 2
+test_dice: 0.868 +- 0.038
+random_state = 0

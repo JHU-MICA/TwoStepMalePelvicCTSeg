@@ -1,0 +1,7 @@
+TASK_NAME = 'prostate'
+PATCH_SIZE = (64,64,48)
+PIXDIMS = (1.7,1.7,3)
+MODEL_TYPE = 'prostate_mt'
+
+TRAIN_STATE = 10
+VAL_SIZE = 0.1

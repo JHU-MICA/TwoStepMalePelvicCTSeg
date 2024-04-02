@@ -1,0 +1,103 @@
+Keeping track of models tested
+
+PATCH_BASED_COARSE: num_classes = 7
+
+-- FINAL MODEL COMPARISONS --
+
+--- five_lbl_unet_weighted (nnUNet transform -> spatial_size=(112,112,48),pixdims=(1.7,1.7,3)) ---
+GenericUnet(
+        1,
+        num_classes,
+        patch_size,
+        norm_name='INSTANCE',
+        num_layers=4,
+        encoder_block='conv',
+        encoder_units=2)
+    
+adamw: lr 1e-4, decay 1e-5 
+batch size: 2
+
+val_size: 0.1
+
+mean     0.843184  0.958107  0.835169  0.719448  0.936629  0.937099 (0.871606 average)
+std      0.048809  0.016190  0.052847  0.126654  0.016199  0.017772 
+
+
+--- five_lbl_pure_axial_unet_weighted (nnUNet transform -> spatial_size=(112,112,48),pixdims=(1.7,1.7,3)) ---
+GenericUnet(
+    1,
+    num_classes,
+    patch_size,
+    norm_name='INSTANCE',
+    num_layers=4,
+    encoder_block='pure_axial',
+    encoder_units=2,)
+    
+adamw: lr 1e-4, decay 1e-5 
+batch size: 2
+
+val_size: 0.1
+
+mean     0.840121  0.954558  0.827361  0.679131  0.936031  0.923860
+std      0.039876  0.022992  0.054848  0.123437  0.018151  0.033168
+
+
+--- NEW_VERSION_five_lbl_axial_unet_weighted (nnUNet transform -> spatial_size=(112,112,48),pixdims=(1.7,1.7,3)) ---
+GenericUnet(1,
+    num_classes,
+    patch_size,
+    norm_name='INSTANCE',
+    num_layers=4,
+    encoder_block='axial',
+    encoder_units=3,
+    )
+    
+adamw: lr 1e-4, decay 1e-5 
+batch size: 2
+
+val_size: 0.1
+
+mean     0.853075  0.956029  0.831712  0.743656  0.934455  0.935290  (0.8757028333 average)
+std      0.044645  0.015263  0.062112  0.116018  0.016209  0.017496   
+
+
+--- NEW_VERSION_five_lbl_pure_axial_unet_weighted (nnUNet transform -> spatial_size=(112,112,48),pixdims=(1.7,1.7,3)) ---
+GenericUnet(1,
+    num_classes,
+    patch_size,
+    norm_name='INSTANCE',
+    num_layers=4,
+    encoder_block='pure_axial',
+    encoder_units=3,
+    )
+    
+adamw: lr 1e-4, decay 1e-5 
+batch size: 2
+
+val_size: 0.1
+
+mean     0.843681  0.951569  0.828626  0.710404  0.937202  0.932888
+std      0.053972  0.025684  0.065952  0.133749  0.017349  0.022641
+
+--- five_lbl_patch_unetr (nnUNet transform -> spatial_size=(112,112,48),pixdims=(1.7,1.7,3)) ---
+monai.networks.nets.UNETR(
+        in_channels=1,
+        out_channels=num_classes,
+        img_size=patch_size,
+        feature_size=16,
+        hidden_size=768,
+        mlp_dim=3072,
+        num_heads=12,
+        pos_embed="perceptron",
+        norm_name="instance",
+        res_block=True,
+        dropout_rate=0.0,
+    )
+    
+adamw: lr 1e-4, decay 1e-5 
+batch size: 2
+
+val_size: 0.1
+
+mean     0.826095  0.938652  0.811087  0.707359  0.935211  0.935095
+std      0.044302  0.049535  0.067094  0.116102  0.014415  0.015588

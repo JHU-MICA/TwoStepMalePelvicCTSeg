@@ -73,10 +73,10 @@ if __name__ == '__main__':
 
     # lbl_type: name, label number in coarse, crop size
     lbl_type = ('prostate',1,(64,64,48))
-    lbl_base = [os.path.basename(x) for x in glob.glob(f'D:\Rahul\Data\original_images\{lbl_type[0]}\*.nii')]
+    lbl_base = [os.path.basename(x) for x in glob.glob(f'path/to/original_data/{lbl_type[0]}/*.nii')]
 
-    img_paths = [os.path.join('D:\Rahul\Data\original_images\img',x) for x in lbl_base]
-    lbl_paths = [os.path.join(f'D:\Rahul\Data\original_images\{lbl_type[0]}',x) for x in lbl_base]
+    img_paths = [os.path.join('path/to/original_data/img',x) for x in lbl_base]
+    lbl_paths = [os.path.join(f'path/to/original_data/{lbl_type[0]}',x) for x in lbl_base]
 
     out_base = os.path.join(DATA_BASE,'cropped_data',f'{lbl_type[0]}_{lbl_type[2][0]}_{lbl_type[2][1]}_{lbl_type[2][2]}')
 

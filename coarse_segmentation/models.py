@@ -160,20 +160,3 @@ class GenericUnet(nn.Module):
 # utility -> counts number of parameters in nn module
 def count_params(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
-
-if __name__ == '__main__':
-    import monai
-
-    #x = torch.randn((1,1,96,96,64))
-
-    model = GenericUnet(
-        1,
-        7,
-        (112,112,48),
-        norm_name='INSTANCE',
-        num_layers=4,
-        encoder_block='conv',
-        encoder_units=3,
-    )
-
-    print(count_params(model))

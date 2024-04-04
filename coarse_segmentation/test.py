@@ -20,29 +20,29 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print('evaluating on',device)
 
 # set up transforms and datasets/dataloaders
-task_name = 'five_label'
+task_name = 'coarse'
 patch_size = (112,112,48)
 data_fingerprint = read_fingerprint(task_name)
 train_transform,_,test_transform = nnUNet_transform(data_fingerprint,device=device,spatial_size=patch_size,pixdims=(1.7,1.7,3))
-_, _, test_set = create_datasets(task_name,(train_transform,test_transform),cache_dir='five_label_patch')
+_, _, test_set = create_datasets(task_name,(train_transform,test_transform),cache_dir='coarse')
 batch_size = 1
 test_loader = monai.data.DataLoader(test_set,batch_size=1)
 
-model_name = 'swin_mlp_unet'
-model_type = 'patch_based_coarse'
+model_name = 'ACA_UNet'
+model_type = 'coarse_segmentation'
 model_path = os.path.join(MODEL_BASE,'model_weights',model_type,model_name+'.pt')
 num_classes = 7
 save = False # whether or not to save image
 
 # model -> can be found in runs.txt
-model = SwinMLPUNet(
+model = GenericUnet(
         1,
         num_classes,
         patch_size,
         norm_name='INSTANCE',
         num_layers=4,
+        encoder_block='axial',
         encoder_units=3,
-        num_features = 32,
         )
 
 # load in the weights and push to device for evaluation
@@ -69,7 +69,7 @@ saver = mt.Compose([
         meta_keys=['label_meta_dict'],
         separate_folder=False,
         output_postfix='pred',
-        output_dir = os.path.join(DATA_BASE,'coarse_to_fine','AxialUNet_COARSE')
+        output_dir = os.path.join(DATA_BASE,'coarse_to_fine','ACAUNet_COARSE')
     )
 ])
 

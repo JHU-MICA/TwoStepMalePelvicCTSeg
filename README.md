@@ -22,7 +22,7 @@ All files for each segmentation task are stored in one folder. For each task, th
 
 3. models.py: Contains functions to create segmentation models (UNet and DeepLabv3)
 
-4. paths.py: Stores paths to the "Model" and "Data" folders
+4. paths.py: Stores paths to the "Model" and "Data" folders. These paths must be changed to point to the appropriate folders.
 
 5. test.py: Script for evaluating models on test data
 

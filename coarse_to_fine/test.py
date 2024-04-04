@@ -15,9 +15,9 @@ from test_utils import multi_organ_dice
 run_name = 'TestOut'
 
 test_imgs = ['001','002','003','004','005','006','009','010','011','012','013','014','015']
-img_paths = ['D:\Rahul\Data\original_images\img\\{}.nii'.format(x) for x in test_imgs]
-lbl_paths = ['D:\Rahul\AugmentedData\PelvicData\\5_organ_labels\\{}-label.nii'.format(x) for x in test_imgs]
-pred_paths = [os.path.join(config.DATA_BASE,'coarse_to_fine',run_name)+'\\{}_pred.nii.gz'.format(x) for x in test_imgs]
+img_paths = 'path/to/image/data' # ex) ['D:\\img\\{}.nii'.format(x) for x in test_imgs]
+lbl_paths = 'path/to/label/data' # ex) ['D:\\label\\{}-label.nii'.format(x) for x in test_imgs]
+output_dir = 'path/to/save/output' # ex) os.path.join(config.DATA_BASE,'coarse_to_fine',run_name)
 
 create_lbls = True # whether or not to rerun the label making
 
@@ -41,12 +41,14 @@ saver = mt.Compose([
         meta_keys=['label_meta_dict'],
         separate_folder=False,
         output_postfix='pred',
-        output_dir = os.path.join(config.DATA_BASE,'coarse_to_fine',run_name)
+        output_dir = output_dir
     )
 ])
 
 dice_df = pd.DataFrame(columns=['prostate','bladder','rectum','seminal','left fh','right fh'])
 haus_df = pd.DataFrame(columns=['prostate','bladder','rectum','seminal','left fh','right fh'])
+
+pred_paths = glob.glob(output_dir  + '\\**') 
 
 for (y_true,y_pred) in zip(lbl_paths,pred_paths):
 

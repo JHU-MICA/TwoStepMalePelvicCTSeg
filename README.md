@@ -1,8 +1,7 @@
 # Pelvic CT Segmentation Repository
 
-This repository acts as the codebase for the pelvic CT multi-organ segmentation project.
+This repository acts as the codebase for the paper "Cascaded cross-attention transformers and convolutional neural networks for multi-organ segmentation in male pelvic computed tomography".
 
-The code for multi-organ segmentation using softmax-base image enhancement can be found in the "enhancement" branch. The code in the "main" branch does not use enhancement. 
 
 ## Getting Started
 In order to train on your own data, you will have to create a separate "Data" and "Model" folder. The "Data" folder will be used to store "data_loc" and "data_fingerprint" files, as well as any other data that gets generated (ex. test data segmentations, cached data). 

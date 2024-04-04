@@ -1,3 +1,5 @@
 # base directory for all data (ex. data loc, fingerprints, cached data)
-DATA_BASE = 'D:\Rahul\Program\Torch_PelvicCTSegmentation\\data_files' 
-MODEL_BASE = 'D:\Rahul\Program\Torch_PelvicCTSegmentation\\models' 
+DATA_BASE = 'path/to/data/folder' 
+
+# base directory for all model weights, configs, logs
+MODEL_BASE = 'path/to/model/folder' 

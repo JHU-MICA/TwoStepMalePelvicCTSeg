@@ -20,18 +20,18 @@ if __name__ == '__main__':
     print('training on',device)
 
     # set up transforms and datasets/dataloaders
-    task_name = 'five_label'
+    task_name = 'coarse'
     patch_size = (112,112,48)
     data_fingerprint = read_fingerprint(task_name)
     train_transform,test_transform,_ = nnUNet_transform(data_fingerprint,device=device,spatial_size=patch_size,pixdims=(1.7,1.7,3))
-    train_set, val_set, test_set = create_datasets(task_name,(train_transform,test_transform),val_size=0.1,cache_dir='five_label_patch')
+    train_set, val_set, test_set = create_datasets(task_name,(train_transform,test_transform),val_size=0.1,cache_dir='coarse')
     batch_size = 2
     train_loader = monai.data.DataLoader(train_set,batch_size=batch_size,shuffle=True) # CHANGED
     val_loader = monai.data.DataLoader(val_set,batch_size=1)
 
     # basic training loop
     model_name = 'ACA_UNet'
-    model_type = 'patch_based_coarse'
+    model_type = 'coarse_segmentation'
     model_path = os.path.join(MODEL_BASE,'model_weights',model_type)
     num_classes = 7
     print_step = 10

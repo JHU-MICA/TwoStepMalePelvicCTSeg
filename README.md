@@ -46,9 +46,9 @@ For Coarse Segmentation
 coarse_to_fine folder: Contains code for running the full two-step segmentation pipeline. Models can be changed using the config.py file. To run the model on nifti images, run the `coarse_to_fine` function in `main.py` file. To run the model on dicom images, run the `run_pipeline` function in `pipeline.py`.
 
 ## Trained Models and Sample Data
-Trained models (coarse multi-organ segmentation & each organ-specific fine segmentation models) can be found in Release\Models
+Trained models (coarse multi-organ segmentation & each organ-specific fine segmentation models) can be found in Releases-Models
 
-A sample CT to test the pipeline can be found in Release\Sample Data
+A sample CT to test the pipeline can be found in Releases-Sample Data
 
 ## Reference
 
